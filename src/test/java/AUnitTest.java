@@ -7,5 +7,10 @@ public class AUnitTest extends BaseTest {
         System.out.println("Hello world!!!");
     }
 
+    @Test
+    public void test() {
+        System.out.println("Hello world!!!");
+    }
+
 
 }
