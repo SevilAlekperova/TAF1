@@ -14,7 +14,7 @@ public class SmokeTest2 {
     private WebDriver driver;
 
     @BeforeMethod
-    public void setUp(){
+    public void setUp() {
         BrowsersService browsersService = new BrowsersService();
         driver = browsersService.getDriver();
     }
@@ -23,7 +23,7 @@ public class SmokeTest2 {
     public void validateSKFTest() throws InterruptedException {
         driver.get("http://13gp.by/informatsiya/meditsinskie-kalkulyatory/995-raschet-skorosti-klubochkovoj-filtratsii-skf");
 
-        WebElement selectWebElement=driver.findElement(By.id("oSex"));
+        WebElement selectWebElement = driver.findElement(By.id("oSex"));
         Select selectSex = new Select(selectWebElement);
         selectSex.selectByVisibleText("женский");
         Thread.sleep(2000);
@@ -44,7 +44,7 @@ public class SmokeTest2 {
         Thread.sleep(2000);
         WebElement button = driver.findElement(By.xpath("//*[@id=\"Form1\"]/ul/li[6]/input[1]"));
 
-       button.click();
+        button.click();
 
         WebElement result1 = driver.findElement(By.id("txtMDRD"));
         Assert.assertEquals(result1.getText(), "MDRD: 74 (мл/мин/1,73кв.м)");
