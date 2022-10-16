@@ -39,20 +39,4 @@ public class WaitsService {
         return wait.until(ExpectedConditions.invisibilityOf(element));
     }
 
-    public List<WebElement> waitForAllVisibleElementsLocatedBy(By locator) {
-        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-    }
-
-    public WebElement waitForExists(By locator) {
-        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-    }
-
-    public WebElement fluentWaitForElement(By by) {
-        Wait<WebDriver> fluent = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(30))
-                .pollingEvery(Duration.ofMillis(50))
-                .ignoring(NoSuchElementException.class);
-
-        return fluent.until(driver -> driver.findElement(by));
-    }
 }
