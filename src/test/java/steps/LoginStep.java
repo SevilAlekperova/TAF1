@@ -1,6 +1,6 @@
 package steps;
 
-import BaseEntities.BaseStep;
+import baseEntities.BaseStep;
 import org.openqa.selenium.WebDriver;
 import pages.DashboardPage;
 import pages.LoginPage;
@@ -19,18 +19,19 @@ public class LoginStep extends BaseStep {
         loginPage.setPsw(psw);
         loginPage.clickLoginButton();
     }
+
     public DashboardPage loginSuccessful(String email, String psw) {
-       login(email, psw);
+        login(email, psw);
 
-       return new DashboardPage(driver);
+        return new DashboardPage(driver);
     }
 
-     public LoginPage loginIncorrect(String email, String psw) {
-       login(email, psw);
+    public LoginPage loginIncorrect(String email, String psw) {
+        login(email, psw);
 
-       return loginPage;
+        return loginPage;
     }
 
-    public void logout(){
+    public void logout() {
     }
 }
