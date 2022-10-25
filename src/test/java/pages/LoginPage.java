@@ -1,27 +1,41 @@
 package pages;
 
+import baseEntities.BasePage;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import configuration.ReadProperties;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import services.BrowsersService;
 import steps.LoginStep;
 
-public class LoginPage {
-    protected WebDriver driver;
-    protected LoginStep loginStep;
+public class LoginPage extends BasePage {
+    // Блок описания селекторов для элементов
+    private final By emailInputLocator = By.id("name");
+    private final By pswInputLocator = By.id("password");
+    private final By loginButtonLocator = By.id("button_primary");
+    private final By errorTextLocator = By.className("error-text");
 
-    @BeforeMethod
-    public void setUp() {
-        driver = new BrowsersService().getDriver();
-        driver.get(ReadProperties.getUrl());
-
-        loginStep = new LoginStep(driver);
+    // Блок инициализации страницы
+    public LoginPage(WebDriver driver) {
+        super(driver);
     }
 
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
+    @Override
+    protected By getPageIdentifier() {
+        return loginButtonLocator;
     }
+
+    // Блок атомарных методов
+    public WebElement getEmailInput() { return waitsService.waitForVisibilityBy(emailInputLocator); }
+    public WebElement getPswInput() { return driver.findElement(pswInputLocator); }
+    public WebElement getLoginButton() { return driver.findElement(loginButtonLocator); }
+
+    public void setEmail(String value) { getEmailInput().sendKeys(value); }
+    public void setPsw(String value) { getPswInput().sendKeys(value); }
+    public void clickLoginButton() { getLoginButton().click(); }
+    public WebElement getErrorTextElement() { return driver.findElement(errorTextLocator); }
 
 }
