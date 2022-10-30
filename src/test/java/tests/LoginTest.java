@@ -2,6 +2,7 @@ package tests;
 
 import baseEntities.BaseTest;
 import configuration.ReadProperties;
+import elements.CheckBox;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,6 +26,9 @@ public class LoginTest extends BaseTest {
         loginStep.login(ReadProperties.username(), ReadProperties.password());
 
         Assert.assertTrue(new DashboardPage(driver).isPageOpened());
+
+        CheckBox checkBox = new CheckBox(driver, By.id("jhkj"));
+        checkBox.set();
     }
 
     @Test
