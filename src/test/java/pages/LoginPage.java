@@ -6,6 +6,7 @@ import configuration.ReadProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import services.BrowsersService;
@@ -13,29 +14,29 @@ import steps.LoginStep;
 
 public class LoginPage extends BasePage {
     // Блок описания селекторов для элементов
-    private final By emailInputLocator = By.id("name");
-    private final By pswInputLocator = By.id("password");
-    private final By loginButtonLocator = By.id("button_primary");
-    private final By errorTextLocator = By.className("error-text");
+    @FindBy (id = "name")
+    public WebElement emailInput;
+
+    @FindBy (id = "password")
+    public WebElement pswInput;
+
+    @FindBy (id = "button_primary")
+    public WebElement loginButton;
+
+    @FindBy (className = "error-text")
+    public WebElement errorText;
 
     // Блок инициализации страницы
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    @Override
-    protected By getPageIdentifier() {
-        return loginButtonLocator;
-    }
 
     // Блок атомарных методов
-    public WebElement getEmailInput() { return waitsService.waitForVisibilityBy(emailInputLocator); }
-    public WebElement getPswInput() { return driver.findElement(pswInputLocator); }
-    public WebElement getLoginButton() { return driver.findElement(loginButtonLocator); }
 
-    public void setEmail(String value) { getEmailInput().sendKeys(value); }
-    public void setPsw(String value) { getPswInput().sendKeys(value); }
-    public void clickLoginButton() { getLoginButton().click(); }
-    public WebElement getErrorTextElement() { return driver.findElement(errorTextLocator); }
+    public void setEmail(String value) { emailInput.sendKeys(value); }
+    public void setPsw(String value) { pswInput.sendKeys(value); }
+    public void clickLoginButton() { loginButton.click(); }
+    public WebElement getErrorTextElement() { return errorText; }
 
 }

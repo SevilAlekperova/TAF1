@@ -8,8 +8,6 @@ public class UpdateProjectPage extends BaseProjectPage{
         super(driver);
     }
 
-    @Override
-    protected By getPageIdentifier() {
-        return null;
-    }
+
+
 }

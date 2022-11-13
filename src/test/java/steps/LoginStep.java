@@ -1,7 +1,7 @@
 package steps;
 
 import baseEntities.BaseStep;
-import io.qameta.allure.Step;
+
 import org.openqa.selenium.WebDriver;
 import pages.DashboardPage;
 import pages.LoginPage;
@@ -16,7 +16,7 @@ public class LoginStep extends BaseStep {
         loginPage = new LoginPage(driver);
     }
 
-    @Step
+
     public void login(String email, String psw) {
         loginPage.setEmail(email);
         loginPage.setPsw(psw);
