@@ -9,20 +9,19 @@ import pages.LoginPage;
 public class LoginStep extends BaseStep {
     LoginPage loginPage;
 
-
     public LoginStep(WebDriver driver) {
         super(driver);
 
         loginPage = new LoginPage(driver);
     }
 
-    @Step
     public void login(String email, String psw) {
         loginPage.setEmail(email);
         loginPage.setPsw(psw);
         loginPage.clickLoginButton();
     }
 
+    @Step
     public DashboardPage loginSuccessful(String email, String psw) {
         login(email, psw);
 

@@ -40,6 +40,11 @@
             <artifactId>allure-testng</artifactId>
             <version>2.19.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok-maven-plugin</artifactId>
+            <version>1.18.20.0</version>
+        </dependency>
     </dependencies>
 
     <build>
