@@ -14,19 +14,23 @@ public class CheckoutStep extends BaseStep {
         checkoutPage = new CheckoutPage(driver);
     }
 
-    public void successAddToShoppingCart() throws InterruptedException {
+    public CheckoutPage successAddToShoppingCart() throws InterruptedException {
         checkoutPage.clickAddToCardButton();
         Thread.sleep(2000);
         checkoutPage.clickShoppingCartContainerIcon();
         Thread.sleep(2000);
         checkoutPage.clickCheckoutButton();
         Thread.sleep(2000);
+
+        return checkoutPage;
     }
 
-    public void CheckoutSuccess(String firstName, String lastName, String postalCode) {
+    public CheckoutPage CheckoutSuccess(String firstName, String lastName, String postalCode) {
         checkoutPage.setFirstName(firstName);
         checkoutPage.setLastName(lastName);
         checkoutPage.setPostalCode(postalCode);
+
+        return checkoutPage;
     }
 
     public CheckoutPage CheckoutIncorrect(String firstName, String lastName, String postalCode) {
