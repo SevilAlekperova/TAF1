@@ -1,38 +1,35 @@
 package steps;
 
-import baseEntities.BaseStep;
-import org.openqa.selenium.WebDriver;
-import pages.DashboardPage;
+import pages.ContainerMenuPage;
+import pages.ManeMenuPage;
 import pages.LoginPage;
 
-public class LoginStep extends BaseStep {
+
+public class LoginStep {
     LoginPage loginPage;
+    ManeMenuPage maneMenuPage;
+    ContainerMenuPage containerMenuPage;
 
-    public LoginStep(WebDriver driver) {
-        super(driver);
 
-        loginPage = new LoginPage(driver);
+    public LoginStep() {
+        loginPage = new LoginPage();
+        maneMenuPage = new ManeMenuPage();
+        containerMenuPage = new ContainerMenuPage();
     }
 
-    public void login(String email, String psw) {
-        loginPage.setEmail(email);
+    public void login(String user, String psw) {
+        loginPage.setEmail(user);
         loginPage.setPsw(psw);
+
+    }
+
+    public void loginSuccessful(String user, String psw) {
+        login(user, psw);
+    }
+
+    public void loginSuccessfulAndClick(String user, String psw) {
+        login(user, psw);
         loginPage.clickLoginButton();
-    }
-
-    public DashboardPage loginSuccessful(String email, String psw) {
-        login(email, psw);
-
-        return new DashboardPage(driver);
-    }
-
-    public LoginPage loginIncorrect(String email, String psw) {
-        login(email, psw);
-
-        return loginPage;
-    }
-
-    public void logout() {
     }
 }
 
