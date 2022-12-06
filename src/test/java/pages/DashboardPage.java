@@ -11,14 +11,19 @@ public class DashboardPage extends BasePage {
     // Блок описания селекторов для элементов
     private final By headerTitleLabelLocator = By.xpath("//div[contains(text(), 'All Projects')]");
 
-
     public TopMenuPage topMenuPage;
 
     // Блок инициализации страницы
     public DashboardPage(WebDriver driver) {
         super(driver);
+        topMenuPage=new TopMenuPage(driver);
+    }
 
-        topMenuPage = new TopMenuPage(driver);
+
+
+    @Override
+    protected By getPageIndetifier() {
+        return null;
     }
 
     @Override

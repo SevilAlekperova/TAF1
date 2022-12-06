@@ -3,24 +3,21 @@ package baseEntities;
 import configuration.ReadProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import services.WaitsService;
 
-public abstract class BasePage {
+public  abstract class BasePage {
     protected WebDriver driver;
-    protected WaitsService waitsService;
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
-        waitsService = new WaitsService(driver);
+    public BasePage(WebDriver driver){
+        this.driver=driver;
+    }
+    protected abstract By getPageIndetifier();
+
+    public boolean isPageOpened(){
+        return driver.findElement(getPageIndetifier()).isDisplayed();
+    }
+    public void openPageByUrl(String pagePath){
+        driver.get(ReadProperties.getUrl()+ pagePath);
     }
 
     protected abstract By getPageIdentifier();
-
-    public boolean isPageOpened() {
-        return driver.findElement(getPageIdentifier()).isDisplayed();
-    }
-
-    public void openPageByUrl(String pagePath) {
-        driver.get(ReadProperties.getUrl() + pagePath);
-    }
 }

@@ -6,8 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class TopMenuPage extends BasePage {
+
+
     // Блок описания селекторов для элементов
-    private final By pageIdentifier = By.xpath("");
+    private final By pageIndetifer= By.xpath("");
 
     // Блок инициализации страницы
     public TopMenuPage(WebDriver driver) {
@@ -15,12 +17,18 @@ public class TopMenuPage extends BasePage {
     }
 
     @Override
-    protected By getPageIdentifier() {
-        return pageIdentifier;
+    protected By getPageIndetifier() {
+        return null;
     }
 
-    // Блок атомарных методов
-    //public WebElement getHeaderTitleLabel() { return driver.findElement(headerTitleLabelLocator); }
+    @Override
+    protected By getPageIdentifier() {
+        return pageIndetifer;
+    }
 
-    //public boolean isHeaderTitleLabelDisplayed() { return getHeaderTitleLabel().isDisplayed(); }
+
+    // Блок атомарных методов
+    public WebElement getHeaderTitleLabel() { return driver.findElement(pageIndetifer); }
+
+    public boolean isHeaderTitleLabelDisplayed() { return getHeaderTitleLabel().isDisplayed(); }
 }

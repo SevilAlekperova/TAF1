@@ -8,11 +8,10 @@ import org.openqa.selenium.WebElement;
 public abstract class BaseProjectPage extends BasePage {
     private final By nameInputLocator = By.id("name");
 
-    public BaseProjectPage(WebDriver driver){
+    public BaseProjectPage(WebDriver driver) {
         super(driver);
     }
 
-    public WebElement nameInput(){
-        return driver.findElement(nameInputLocator);
-    }
+    public WebElement nameInput() { return driver.findElement(nameInputLocator); }
 }
+
