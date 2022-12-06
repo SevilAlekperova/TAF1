@@ -9,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
-
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
@@ -52,7 +51,6 @@ public class BrowsersService {
     }
 
     public WebDriver getDriver() {
-        driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
 

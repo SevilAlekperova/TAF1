@@ -1,52 +1,43 @@
 package tests;
 
-import baseEntities.BaseTest;
+import com.codeborne.selenide.SelenideElement;
 import configuration.ReadProperties;
+import io.qameta.allure.Description;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.DashboardPage;
-import pages.LoginPage;
-import pages.TopMenuPage;
-import pages.projects.AddProjectPage;
-import pages.projects.UpdateProjectPage;
-import services.BrowsersService;
-import steps.LoginStep;
 
-public class LoginTest extends BaseTest {
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
-
+public class LoginTest {
+    @Description("Успешный вход на сайт. Версия 1")
     @Test
-    public void successLoginTest() {
-        loginStep.login(ReadProperties.username(), ReadProperties.password());
+    public void loginTest1() {
 
-        Assert.assertTrue(new DashboardPage(driver).isPageOpened());
+        open(ReadProperties.getUrl());
+
+        $(By.id("user-name")).setValue(ReadProperties.username());
+        $("#password").setValue(ReadProperties.password());
+        $("#login-button").click();
+
+        $(By.xpath("//span[contains(text(), 'Products')]")).shouldBe(visible);
     }
 
+    @Description("Успешный вход на сайт. Версия 2")
     @Test
-    public void successLoginTest1() {
-        Assert.assertTrue(
-                loginStep.loginSuccessful(ReadProperties.username(), ReadProperties.password())
-                        .isPageOpened());
-    }
+    public void loginTest2() {
 
-    @Test
-    public void incorrectUsernameTest() {
-        Assert.assertEquals(
-                loginStep.loginIncorrect("sdsd", ReadProperties.password())
-                        .getErrorTextElement().getText()
-                , "Email/Login or Password is incorrect. Please try again.");
-    }
+        open(ReadProperties.getUrl());
 
-    //@Test
-    public void fail_incorrectUsernameTest() {
-        Assert.assertEquals(
-                loginStep.loginIncorrect("sdsd", ReadProperties.password())
-                        .getErrorTextElement().getText()
-                , "Email/Login or Password is incorrect. Please try again.111");
+        SelenideElement username = $(By.id("user-name"));
+        SelenideElement psw = $(By.id("password"));
+        SelenideElement loginButton = $(By.id("login-button"));
+
+        username.setValue(ReadProperties.username());
+        psw.setValue(ReadProperties.password());
+        loginButton.click();
+
+        $(By.xpath("//span[contains(text(), 'Products')]")).shouldBe(exist);
     }
 }

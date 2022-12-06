@@ -30,6 +30,15 @@ public class ReadProperties {
     public static String password() {
         return properties.getProperty("password");
     }
+    public static String firstName() {
+        return properties.getProperty("firstName");
+    }
+    public static String lastName() {
+        return properties.getProperty("lastName");
+    }
+    public static String postalCode() {
+        return properties.getProperty("postalCode");
+    }
 
     public static boolean isHeadless() {
         return properties.getProperty("headless").equalsIgnoreCase("true");
