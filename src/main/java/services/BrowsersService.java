@@ -9,9 +9,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
-
 public class BrowsersService {
     private WebDriver driver = null;
 
@@ -27,7 +24,7 @@ public class BrowsersService {
                 //chromeOptions.addArguments("--window-size=1920,1200");
                 chromeOptions.addArguments("--ignore-certificate-errors");
                 chromeOptions.addArguments("--silent");
-                chromeOptions.addArguments("--start-maximized");
+                //chromeOptions.addArguments("--start-maximized");
 
                 driver = new ChromeDriver(chromeOptions);
 
@@ -45,10 +42,8 @@ public class BrowsersService {
     }
 
     public WebDriver getDriver() {
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
-        driver.manage().timeouts().getPageLoadTimeout();
 
         return driver;
     }
